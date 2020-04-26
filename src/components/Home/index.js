@@ -19,7 +19,8 @@ const Home = () => (
 class _CourseList extends Component {
   state = {
     loading: false,
-    courses: null
+    courses: null,
+    error: null
   };
 
   componentDidMount() {
@@ -35,7 +36,14 @@ class _CourseList extends Component {
 
         this.setState({
           courses,
-          loading: false
+          loading: false,
+          error: null
+        });
+      }, err => {
+        console.error(err);
+        this.setState({
+          loading: false,
+          error: err.code
         });
       });
   }
@@ -45,8 +53,10 @@ class _CourseList extends Component {
   }
 
   render() {
-    const { courses, loading } = this.state;
-    return !courses || loading ? (
+    const { courses, loading, error } = this.state;
+    return error ? (
+      <div className="red-text text-darken-3">Error: { error }</div>
+    ) : !courses || loading ? (
       <div>Loading courses...</div>
     ) : !courses.length ? (
       <div>You have no courses. Create a first course to begin.</div>
