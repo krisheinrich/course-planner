@@ -95,6 +95,10 @@ class Firebase {
   user = uid => this.db.collection('users').doc(uid);
 
   users = () => this.db.collection('users');
+
+  // Courses API
+
+  userCourses = uid => this.db.collection('courses').where("userId", "==", uid);
 }
 
 export default Firebase;
