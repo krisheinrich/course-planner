@@ -1,9 +1,10 @@
 import React from 'react';
+import PageLayout from '../PageLayout';
 
 const Landing = () => (
-  <div>
+  <PageLayout>
     <h1>Welcome to the landing page!</h1>
-  </div>
+  </PageLayout>
 );
 
 export default Landing;

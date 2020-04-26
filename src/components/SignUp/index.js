@@ -3,6 +3,8 @@ import { Link, withRouter } from 'react-router-dom';
 import { compose } from 'recompose';
 
 import { withFirebase } from '../Firebase';
+import PageLayout from '../PageLayout';
+
 import * as ROUTES from '../../constants/routes';
 import * as ROLES from '../../constants/roles';
 
@@ -18,10 +20,10 @@ const ERROR_MSG_ACCOUNT_EXISTS = `
 `;
 
 const SignUpPage = () => (
-  <div>
+  <PageLayout>
     <h1>SignUp</h1>
     <SignUpForm />
-  </div>
+  </PageLayout>
 );
 
 const INITIAL_STATE = {
@@ -103,6 +105,7 @@ class _SignUpForm extends Component {
           onChange={this.onChange}
           type="text"
           placeholder="Full Name"
+          autoComplete="username"
         />
         <input
           name="email"
@@ -110,6 +113,7 @@ class _SignUpForm extends Component {
           onChange={this.onChange}
           type="text"
           placeholder="Email Address"
+          autoComplete="email"
         />
         <input
           name="password"
@@ -117,6 +121,7 @@ class _SignUpForm extends Component {
           onChange={this.onChange}
           type="password"
           placeholder="Password"
+          autoComplete="new-password"
         />
         <input
           name="passwordConfirm"
@@ -124,16 +129,20 @@ class _SignUpForm extends Component {
           onChange={this.onChange}
           type="password"
           placeholder="Confirm Password"
+          autoComplete="new-password"
         />
-        <label>
-          Admin:
+        <div className="row">
+          <label htmlFor="is-admin" style={{ marginRight: 6 }}>
+            Admin?
+          </label>
           <input
+            id="is-admin"
             name="isAdmin"
             type="checkbox"
             checked={isAdmin}
             onChange={this.onChangeCheckbox}
           />
-        </label>
+        </div>
         <button disabled={isInvalid} type="submit">
           Sign Up
         </button>

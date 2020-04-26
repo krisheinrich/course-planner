@@ -5,8 +5,8 @@ import {
   AuthUserContext, withAuthorization, withEmailVerification
 } from '../Session';
 import { withFirebase } from '../Firebase';
-import { PasswordForgetForm } from '../PasswordForget';
 import PasswordChangeForm from '../PasswordChange';
+import PageLayout from '../PageLayout';
 
 const SIGN_IN_METHODS = [
   {
@@ -22,12 +22,11 @@ const SIGN_IN_METHODS = [
 const AccountPage = () => (
   <AuthUserContext.Consumer>
   { authUser => (
-    <div>
+    <PageLayout>
       <h1>Account: { authUser.email }</h1>
-      <PasswordForgetForm />
       <PasswordChangeForm />
       <LoginManagement authUser={authUser} />
-    </div>
+    </PageLayout>
   ) }
   </AuthUserContext.Consumer>
 );
@@ -86,7 +85,7 @@ class _LoginManagement extends Component {
 
     return (
       <div>
-        Sign In Methods:
+        <h4>Sign In Methods:</h4>
         <ul>
           { SIGN_IN_METHODS.map(signInMethod => {
             const onlyOneLeft = activeSignInMethods.length === 1;
@@ -191,10 +190,10 @@ class DefaultLoginToggle extends Component {
         ) : (
           <form onSubmit={this.onSubmit}>
             <input name="password" value={password} onChange={this.onChange}
-              type="password" placeholder="New Password"
+              type="password" placeholder="New Password" autoComplete="new-password"
             />
             <input name="passwordConfirm" value={passwordConfirm} onChange={this.onChange}
-              type="password" placeholder="Confirm New Password"
+              type="password" placeholder="Confirm New Password" autoComplete="new-password"
             />
             <button disabled={isInvalid} type="submit">
               Link {signInMethod.id}

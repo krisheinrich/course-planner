@@ -48,6 +48,7 @@ class PasswordChangeForm extends Component {
           onChange={this.onChange}
           type="password"
           placeholder="New Password"
+          autoComplete="new-password"
         />
         <input
           name="passwordConfirm"
@@ -55,6 +56,7 @@ class PasswordChangeForm extends Component {
           onChange={this.onChange}
           type="password"
           placeholder="Confirm New Password"
+          autoComplete="new-password"
         />
         <button disabled={isInvalid} type="submit">
           Reset My Password

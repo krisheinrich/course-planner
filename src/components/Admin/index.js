@@ -3,19 +3,21 @@ import { Switch, Route, Link } from 'react-router-dom';
 import { compose } from 'recompose';
 
 import { withAuthorization, withEmailVerification } from '../Session';
+import { withFirebase } from '../Firebase';
+import PageLayout from '../PageLayout';
+
 import * as ROLES from '../../constants/roles';
 import * as ROUTES from '../../constants/routes';
-import { withFirebase } from '../Firebase';
 
 const AdminPage = () => (
-  <div>
+  <PageLayout>
     <h1>Admin</h1>
     <p>The Admin Page is accessible by every signed in admin user.</p>
     <Switch>
       <Route exact path={ROUTES.ADMIN_USER_DETAILS} component={UserItem} />
       <Route exact path={ROUTES.ADMIN} component={UserList} />
     </Switch>
-  </div>
+  </PageLayout>
 );
 
 class _UserItem extends Component {

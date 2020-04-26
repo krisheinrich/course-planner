@@ -5,6 +5,8 @@ import { compose } from 'recompose';
 import { SignUpLink } from '../SignUp';
 import { PasswordForgetLink } from '../PasswordForget';
 import { withFirebase } from '../Firebase';
+import PageLayout from '../PageLayout';
+
 import * as ROUTES from '../../constants/routes';
 
 
@@ -19,13 +21,13 @@ const ERROR_MSG_ACCOUNT_EXISTS = `
 `;
 
 const SignInPage = () => (
-  <div>
+  <PageLayout>
     <h1>Sign In</h1>
     <SignInForm />
     <SignInGoogle />
     <PasswordForgetLink />
     <SignUpLink />
-  </div>
+  </PageLayout>
 );
 
 const INITIAL_STATE = {
@@ -74,6 +76,7 @@ class _SignInForm extends Component {
           onChange={this.onChange}
           type="text"
           placeholder="Email Address"
+          autoComplete="email"
         />
         <input
           name="password"
@@ -81,6 +84,7 @@ class _SignInForm extends Component {
           onChange={this.onChange}
           type="password"
           placeholder="Password"
+          autoComplete="current-password"
         />
         <button disabled={isInvalid} type="submit">
           Sign In

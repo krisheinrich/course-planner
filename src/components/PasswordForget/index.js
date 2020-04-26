@@ -1,14 +1,15 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 
+import PageLayout from '../PageLayout';
 import { withFirebase } from '../Firebase';
 import * as ROUTES from '../../constants/routes';
 
 const PasswordForgetPage = () => (
-  <div>
-    <h1>PasswordForget</h1>
+  <PageLayout>
+    <h1>Password Reset</h1>
     <PasswordForgetForm />
-  </div>
+  </PageLayout>
 );
 
 const INITIAL_STATE = {
