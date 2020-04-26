@@ -1,26 +1,26 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-
 import SignOutButton from '../SignOut';
+import { AuthUserContext } from '../Session';
 
 import * as ROUTES from '../../constants/routes';
 import * as ROLES from '../../constants/roles';
 
-import { AuthUserContext } from '../Session';
-
 const Navigation = () => (
-  <div>
-    <AuthUserContext.Consumer>
-      { authUser => authUser
-          ? <NavigationAuth authUser={authUser} />
-          : <NavigationNonAuth />
-      }
-    </AuthUserContext.Consumer>
-  </div>
+  <nav>
+    <div className="nav-wrapper grey darken-2">
+      <AuthUserContext.Consumer>
+        { authUser => authUser
+            ? <NavigationAuth authUser={authUser} />
+            : <NavigationNonAuth />
+        }
+      </AuthUserContext.Consumer>
+    </div>
+  </nav>
 );
 
 const NavigationAuth = ({ authUser }) => (
-  <ul>
+  <ul id="nav-mobile" className="right">
     <li>
       <Link to={ROUTES.LANDING}>Landing</Link>
     </li>
@@ -42,7 +42,7 @@ const NavigationAuth = ({ authUser }) => (
 );
 
 const NavigationNonAuth = () => (
-  <ul>
+  <ul id="nav-mobile" className="right">
     <li>
       <Link to={ROUTES.LANDING}>Landing</Link>
     </li>
