@@ -99,6 +99,8 @@ class Firebase {
   // Courses API
 
   userCourses = uid => this.db.collection('courses').where("userId", "==", uid);
+
+  createCourse = course => this.db.collection('courses').add(course);
 }
 
 export default Firebase;
