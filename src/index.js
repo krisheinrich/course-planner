@@ -1,12 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
 import * as serviceWorker from './serviceWorker';
+
+import 'materialize-css/dist/css/materialize.min.css';
+import './index.css';
 
 import App from './components/App';
 import Firebase, { FirebaseContext } from './components/Firebase';
 
-import 'materialize-css/dist/css/materialize.min.css';
 
 ReactDOM.render(
   <FirebaseContext.Provider value={new Firebase()}>
