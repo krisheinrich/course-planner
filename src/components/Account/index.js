@@ -23,7 +23,9 @@ const AccountPage = () => (
   <AuthUserContext.Consumer>
   { authUser => (
     <PageLayout>
-      <h1>Account: { authUser.email }</h1>
+      <h1>Account</h1>
+      { authUser.username && <h4>Username: { authUser.username }</h4> }
+      <h4>Email: { authUser.email }</h4>
       <PasswordChangeForm />
       <LoginManagement authUser={authUser} />
     </PageLayout>

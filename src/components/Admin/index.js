@@ -5,6 +5,7 @@ import { compose } from 'recompose';
 import { withAuthorization, withEmailVerification } from '../Session';
 import { withFirebase } from '../Firebase';
 import PageLayout from '../PageLayout';
+import styles from './admin.module.css';
 
 import * as ROLES from '../../constants/roles';
 import * as ROUTES from '../../constants/routes';
@@ -61,25 +62,25 @@ class _UserItem extends Component {
 
     return (
       <div>
-        <h2>User ({ this.props.match.params.id })</h2>
+        <h4>User ({ this.props.match.params.id })</h4>
         { loading && <div>Loading ...</div> }
         { user && (
-          <div>
-            <span>
+          <ul>
+            <li>
               <strong>ID:</strong> { user.uid }
-            </span>
-            <span>
+            </li>
+            <li>
               <strong>E-Mail:</strong> { user.email }
-            </span>
-            <span>
+            </li>
+            <li>
               <strong>Username:</strong> { user.username }
-            </span>
-            <span>
+            </li>
+            <li>
               <button type="button" onClick={this.onSendPasswordResetEmail}>
                 Send Password Reset
               </button>
-            </span>
-          </div>
+            </li>
+          </ul>
         ) }
       </div>
     );
@@ -119,25 +120,25 @@ class _UserList extends Component {
 
     return (
       <div>
-        <h2>Users</h2>
+        <h3>Users</h3>
         { loading && <div>Loading ...</div> }
         <ul>
           { users.map(user => (
-            <li key={user.uid}>
-              <span>
+            <li key={user.uid} className={`row ${styles.userItem}`}>
+              <div className="col s12 m4">
                 <strong>ID:</strong> { user.uid }
-              </span>
-              <span>
+              </div>
+              <div className="col s12 m4">
                 <strong>Email:</strong> { user.email }
-              </span>
-              <span>
+              </div>
+              <div className="col s12 m3">
                 <strong>Username:</strong> { user.username }
-              </span>
-              <span>
+              </div>
+              <div className="col s12 m1">
                 <Link to={{ pathname: `${ROUTES.ADMIN}/users/${user.uid}`, state: { user } }}>
                   Details
                 </Link>
-              </span>
+              </div>
             </li>
           )) }
         </ul>

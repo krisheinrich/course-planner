@@ -88,7 +88,7 @@ class _AddCourseModal extends Component {
       <Modal ref={this.modal} id={modalId}>
         <div className="modal-content">
           <h4>Add New Course</h4>
-          <form className={styles.modalForm}>
+          <form>
             <div className="input-field">
               <input type="text" id="title" value={newCourseName} onChange={this.setCourseName} />
               <label htmlFor="title">Course Name</label>
