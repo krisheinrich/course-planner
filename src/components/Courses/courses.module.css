@@ -1,0 +1,16 @@
+.header {
+  position: relative;
+  padding-bottom: 0.2rem;
+  margin-bottom: 2.4rem;
+}
+
+.button {
+  position: absolute;
+  top: 100%;
+  right: 20px;
+  transform: translateY(-50%);
+}
+
+.modal-form {
+  margin: 1rem 0;
+}
