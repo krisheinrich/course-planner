@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import { compose } from 'recompose';
 import M from 'materialize-css';
 
@@ -163,15 +164,17 @@ class _CourseList extends Component {
       <div>You have no courses. Create a first course to begin.</div>
     ) : (
       <div className="row">
-        { courses.map(({ id, name, description }) => (
-          <div key={id} className="col s12 m6 l4">
+        { courses.map(({ id: courseId, name, description }) => (
+          <div key={courseId} className="col s12 m6 l4">
             <div className="card small blue-grey darken-1">
               <div className="card-content white-text">
                 <span className="card-title">{ name }</span>
                 <p>{ description }</p>
               </div>
               <div className="card-action">
-                <a href="#">Go to Course</a>
+                <Link to={{ pathname: `/courses/${courseId}` }}>
+                  Go to Course
+                </Link>
               </div>
             </div>
           </div>

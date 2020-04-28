@@ -100,6 +100,8 @@ class Firebase {
 
   userCourses = uid => this.db.collection('courses').where("userId", "==", uid);
 
+  course = courseId => this.db.collection('courses').doc(courseId);
+
   createCourse = course => this.db.collection('courses').add(course);
 }
 
