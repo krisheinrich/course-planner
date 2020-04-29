@@ -36,6 +36,7 @@ class Firebase {
     this.emailAuthProvider = app.auth.EmailAuthProvider;
     this.auth = app.auth();
     this.db = app.firestore();
+    this.firestore = app.firestore;
 
     this.googleProvider = new app.auth.GoogleAuthProvider();
   }
@@ -102,7 +103,32 @@ class Firebase {
 
   course = courseId => this.db.collection('courses').doc(courseId);
 
-  createCourse = course => this.db.collection('courses').add(course);
+  createCourse = async course => { await this.db.collection('courses').add(course); };
+
+  // Sections API
+
+  sections = sectionIds => {
+    let sectionRefs = sectionIds.map(id => {
+      return this.db.collection('sections').doc(id);
+    });
+    return Promise.all(sectionRefs.map(ref => ref.get()));
+  };
+
+  createSection = async (courseId, section) => {
+    const courseRef = this.db.collection('courses').doc(courseId);
+    const sectionRef = this.db.collection('sections').doc();
+    await sectionRef.set(section);
+    await courseRef.update({
+      sectionIds: this.firestore.FieldValue.arrayUnion(sectionRef.id)
+    });
+  };
+
+  addLessonsToSection = async (sectionId, lessons) => {
+    const sectionRef = this.db.collection('sections').doc(sectionId);
+    await sectionRef.update({
+      lessons: this.firestore.FieldValue.arrayUnion(...lessons)
+    });
+  };
 }
 
 export default Firebase;
