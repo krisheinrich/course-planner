@@ -20,8 +20,8 @@ const Courses = () => {
               <i className="large material-icons">add</i>
             </a>
           </div>
-          <AddCourseModal modalId="course-modal" userId={authUser.uid} />
           <CourseList userId={authUser.uid} />
+          <AddCourseModal modalId="course-modal" userId={authUser.uid} />
         </PageLayout>
       ) }
     </AuthUserContext.Consumer>
